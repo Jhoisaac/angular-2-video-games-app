@@ -1,0 +1,59 @@
+<div class="contenedor">
+  <div class="text-center">
+    <h1>Game Market: <small>{{ totalGamesPrize | currency: 'USD':true }} en total de artículos de {{ tipoArticulo | uppercase }}</small></h1>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <button [routerLink]="['/video-juego', 'nuevo']" type="button" class="btn btn-primary"><fa [name]="'plus-square'"></fa></button>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="sel1">Tipos de Articulos:</label>
+        <select class="form-control" id="sel1">
+          <option *ngFor="let articulo of articulos; let i = index">{{articulo}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+    <tr>
+      <th>Nro</th>
+      <th>Portada</th>
+      <th>Titulo</th>
+      <th>Genero</th>
+      <th>Reseña</th>
+      <th>Tipo</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor=" let juego of marketgames; let i = index">
+      <th>{{i+1}}</th>
+      <td><img class="poke" [src]="juego.url" alt=""></td>
+      <td>{{ juego.titulo }}</td>
+      <td>{{ juego.genero | uppercase }}</td>
+      <td>{{ juego.review }}</td>
+      <td>{{ juego.tipo | uppercase }}</td>
+      <td>{{ juego.precio | currency: 'USD':true }}</td>
+      <td>{{ juego.cantidad }}</td>
+      <td>{{ juego.total | currency: 'USD':true }}</td>
+      <td>
+        <button [routerLink]="['/video-juego', juego.id]" class="btn btn-default btn-primary">
+          <fa [name]="'edit'"></fa>
+        </button>
+        <button (click)="eliminar(juego.id, i)" class="btn btn-default btn-danger">
+          <fa [name]="'trash'"></fa>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

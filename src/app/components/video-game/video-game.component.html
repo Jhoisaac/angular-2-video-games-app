@@ -1,0 +1,66 @@
+<div class="container">
+  <h1>Video Juego: <small>Previsualizacion</small></h1>
+  <div class="card" style="width: 20rem;">
+    <img class="card-img-top poke-card" [src]="juego.url" alt="pokemon">
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button [routerLink]="['/marketplace']" type="button" class="btn btn-info"><<</button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button [routerLink]="['/video-juego', 'nuevo']" type="button" class="btn btn-success">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="guardar()" #forma="ngForm">
+
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="juego.titulo" placeholder="Resident Evil 4">
+        </div>
+
+        <div class="form-group">
+          <label for="review">Reseña</label>
+          <input type="text" class="form-control" id="review" name="review" [(ngModel)]="juego.review" placeholder="Survival Horror">
+        </div>
+
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input type="text" class="form-control" id="precio" name="precio" [(ngModel)]="juego.precio" placeholder="{{juego.precio}}">
+        </div>
+
+        <div class="form-group">
+          <label for="url">Direccion URL</label>
+          <input type="text" class="form-control" id="url" name="url" [(ngModel)]="juego.url" placeholder="{{juego.url}}">
+        </div>
+
+        <div class="form-group">
+          <span>
+            <label for="genero">Genero</label>
+            <select name="genero" id="genero" [(ngModel)]="juego.genero" class="custom-select mb-2">
+              <option value="Aventura">Aventura</option>
+              <option value="Deportes">Deportes</option>
+              <option value="Accion">Accion</option>
+              <option value="Peleas">Peleas</option>
+            </select>
+          </span>
+          <span>
+            <label for="cantidad">Cantidad</label>
+          <input type="text" class="form-control inline-cantidad" id="cantidad" name="cantidad" [(ngModel)]="juego.cantidad" placeholder="{{juego.cantidad}}">
+          </span>
+        </div>
+
+        <div class="form-group">
+          <button  type="submit" class="btn btn-default btn-primary">
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
